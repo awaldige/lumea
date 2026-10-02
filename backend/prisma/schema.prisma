@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum StatusPedido {
+  PENDENTE
+  CONFIRMADO
+  EM_PREPARACAO
+  ENVIADO
+  ENTREGUE
+  CANCELADO
+}
+
+enum PerfilUsuario {
+  CLIENTE
+  ADMIN
+}
+
+model Usuario {
+  id           Int           @id @default(autoincrement())
+  nome         String
+  nomeUsuario  String?       @unique
+  email        String        @unique
+  telefone     String?
+
+  // Endereço de entrega
+  cep          String?
+  estado       String?
+  endereco     String?
+  numero       String?
+  complemento  String?
+  cidade       String?
+
+  senhaHash    String
+  perfil       PerfilUsuario @default(CLIENTE)
+  ativo        Boolean       @default(true)
+  criadoEm     DateTime      @default(now())
+  atualizadoEm DateTime      @updatedAt
+
+  pedidos Pedido[]
+
+  tokensRecuperacaoSenha TokenRecuperacaoSenha[]
+
+  @@map("usuarios")
+}
+
+model Categoria {
+  id          Int      @id @default(autoincrement())
+  nome        String   @unique
+  slug        String   @unique
+  descricao   String?
+  ativo       Boolean  @default(true)
+  criadoEm    DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  produtos Produto[]
+
+  @@map("categorias")
+}
+
+model Colecao {
+  id          Int       @id @default(autoincrement())
+  nome        String
+  slug        String    @unique
+  descricao   String?
+  ativo       Boolean   @default(true)
+  criadoEm    DateTime  @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  produtos Produto[]
+
+  @@map("colecoes")
+}
+
+model Produto {
+  id           Int       @id @default(autoincrement())
+  nome         String
+  slug         String    @unique
+  descricao    String
+  preco        Decimal   @db.Decimal(10, 2)
+  precoOferta  Decimal?  @db.Decimal(10, 2)
+  estoque      Int       @default(0)
+  ativo        Boolean   @default(true)
+  destaque     Boolean   @default(false)
+  novo         Boolean   @default(false)
+  oferta       Boolean   @default(false)
+  imagem       String?
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+
+  colecaoId Int?
+  colecao   Colecao? @relation(fields: [colecaoId], references: [id])
+
+  itensPedido ItemPedido[]
+
+  @@index([categoriaId])
+  @@index([colecaoId])
+  @@map("produtos")
+}
+
+model Pedido {
+  id           Int          @id @default(autoincrement())
+  numero       String       @unique
+  status       StatusPedido @default(PENDENTE)
+  subtotal     Decimal      @db.Decimal(10, 2)
+  desconto     Decimal      @default(0) @db.Decimal(10, 2)
+  frete        Decimal      @default(0) @db.Decimal(10, 2)
+  total        Decimal      @db.Decimal(10, 2)
+  criadoEm     DateTime     @default(now())
+  atualizadoEm DateTime     @updatedAt
+
+  usuarioId Int
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+
+  itens ItemPedido[]
+
+  @@index([usuarioId])
+  @@map("pedidos")
+}
+
+model ItemPedido {
+  id           Int      @id @default(autoincrement())
+  quantidade   Int
+  precoUnitario Decimal  @db.Decimal(10, 2)
+  subtotal     Decimal  @db.Decimal(10, 2)
+
+  pedidoId Int
+  pedido   Pedido @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+
+  produtoId Int
+  produto   Produto @relation(fields: [produtoId], references: [id])
+
+  @@index([pedidoId])
+  @@index([produtoId])
+  @@map("itens_pedido")
+}
+
+model Cupom {
+  id             Int      @id @default(autoincrement())
+  codigo         String   @unique
+  descricao      String?
+  percentual     Decimal? @db.Decimal(5, 2)
+  valorFixo      Decimal? @db.Decimal(10, 2)
+  valorMinimo    Decimal? @db.Decimal(10, 2)
+  limiteUso      Int?
+  usosRealizados Int      @default(0)
+  ativo          Boolean  @default(true)
+  validadeInicio DateTime?
+  validadeFim    DateTime?
+  criadoEm       DateTime  @default(now())
+  atualizadoEm   DateTime @updatedAt
+
+  @@map("cupons")
+}
+
+model TokenRecuperacaoSenha {
+  id        Int       @id @default(autoincrement())
+  tokenHash String    @unique
+  usuarioId Int
+  expiraEm  DateTime
+  usadoEm   DateTime?
+  criadoEm  DateTime  @default(now())
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([usuarioId])
+  @@index([expiraEm])
+  @@map("tokens_recuperacao_senha")
+}
