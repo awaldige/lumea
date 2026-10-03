@@ -17,7 +17,7 @@ import clientesRoutes from "./routes/clientes.routes.js";
 
 const app = express();
 
-const PORT = process.env.PORT || 4000;
+const PORT = Number(process.env.PORT) || 4000;
 
 // =========================
 // CONFIGURAÇÕES
@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
   })
 );
 
@@ -73,27 +73,20 @@ app.get("/api/status", async (_req, res) => {
 // =========================
 
 app.use("/api/categorias", categoriasRoutes);
-
 app.use("/api/produtos", produtosRoutes);
-
 app.use("/api/colecoes", colecoesRoutes);
-
 app.use("/api/auth", authRoutes);
-
 app.use("/api/admin", adminRoutes);
-
 app.use("/api/cupons", cuponsRoutes);
-
 app.use("/api/pedidos", pedidosRoutes);
-
 app.use("/api/clientes", clientesRoutes);
 
 // =========================
 // INICIALIZAÇÃO
 // =========================
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(
-    `LUMÉA API rodando em http://localhost:${PORT}`
+    `LUMÉA API rodando na porta ${PORT}`
   );
 });
