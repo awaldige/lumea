@@ -20,12 +20,31 @@ const app = express();
 const PORT = Number(process.env.PORT) || 4000;
 
 // =========================
+// DIAGNÓSTICO DO BANCO
+// =========================
+
+const databaseUrl = process.env.DATABASE_URL;
+
+if (databaseUrl) {
+  try {
+    const dbUrl = new URL(databaseUrl);
+
+    console.log("DATABASE HOST:", dbUrl.hostname);
+  } catch {
+    console.log("DATABASE HOST: URL inválida");
+  }
+} else {
+  console.log("DATABASE HOST: DATABASE_URL não definida");
+}
+
+// =========================
 // CONFIGURAÇÕES
 // =========================
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin:
+      process.env.FRONTEND_URL || "http://localhost:3000",
   })
 );
 
@@ -56,14 +75,18 @@ app.get("/api/status", async (_req, res) => {
       mensagem: "API LUMÉA funcionando corretamente.",
     });
   } catch (error) {
-    console.error("Erro ao conectar ao banco:", error);
+    console.error(
+      "Erro ao conectar ao banco:",
+      error
+    );
 
     res.status(500).json({
       sucesso: false,
       projeto: "LUMÉA",
       api: "online",
       banco: "erro",
-      mensagem: "API funcionando, mas o banco não respondeu.",
+      mensagem:
+        "API funcionando, mas o banco não respondeu.",
     });
   }
 });
@@ -72,14 +95,45 @@ app.get("/api/status", async (_req, res) => {
 // ROTAS DA API
 // =========================
 
-app.use("/api/categorias", categoriasRoutes);
-app.use("/api/produtos", produtosRoutes);
-app.use("/api/colecoes", colecoesRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/cupons", cuponsRoutes);
-app.use("/api/pedidos", pedidosRoutes);
-app.use("/api/clientes", clientesRoutes);
+app.use(
+  "/api/categorias",
+  categoriasRoutes
+);
+
+app.use(
+  "/api/produtos",
+  produtosRoutes
+);
+
+app.use(
+  "/api/colecoes",
+  colecoesRoutes
+);
+
+app.use(
+  "/api/auth",
+  authRoutes
+);
+
+app.use(
+  "/api/admin",
+  adminRoutes
+);
+
+app.use(
+  "/api/cupons",
+  cuponsRoutes
+);
+
+app.use(
+  "/api/pedidos",
+  pedidosRoutes
+);
+
+app.use(
+  "/api/clientes",
+  clientesRoutes
+);
 
 // =========================
 // INICIALIZAÇÃO
