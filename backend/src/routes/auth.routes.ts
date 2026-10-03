@@ -14,6 +14,10 @@ if (!JWT_SECRET) {
   throw new Error("JWT_SECRET não configurado no ambiente.");
 }
 
+// =========================
+// FUNÇÕES AUXILIARES
+// =========================
+
 function gerarToken(usuarioId: number) {
   return jwt.sign(
     {
@@ -38,9 +42,10 @@ function senhaValida(senha: unknown) {
   return typeof senha === "string" && senha.length >= 6;
 }
 
-/**
- * POST /api/auth/cadastro
- */
+// =========================
+// POST /api/auth/cadastro
+// =========================
+
 router.post("/cadastro", async (req, res) => {
   try {
     const {
@@ -49,8 +54,6 @@ router.post("/cadastro", async (req, res) => {
       email,
       telefone,
       senha,
-
-      // Endereço
       cep,
       estado,
       endereco,
@@ -73,7 +76,6 @@ router.post("/cadastro", async (req, res) => {
       });
     }
 
-    // Endereço obrigatório
     if (!cep || !estado || !endereco || !numero || !cidade) {
       return res.status(400).json({
         sucesso: false,
@@ -132,16 +134,9 @@ router.post("/cadastro", async (req, res) => {
     const usuario = await prisma.usuario.create({
       data: {
         nome: String(nome).trim(),
-
         nomeUsuario: nomeUsuarioNormalizado,
-
         email: emailNormalizado,
-
-        telefone: telefone
-          ? String(telefone).trim()
-          : null,
-
-        // Endereço
+        telefone: telefone ? String(telefone).trim() : null,
         cep: String(cep).trim(),
         estado: String(estado).trim(),
         endereco: String(endereco).trim(),
@@ -150,24 +145,20 @@ router.post("/cadastro", async (req, res) => {
           ? String(complemento).trim()
           : null,
         cidade: String(cidade).trim(),
-
         senhaHash,
       },
-
       select: {
         id: true,
         nome: true,
         nomeUsuario: true,
         email: true,
         telefone: true,
-
         cep: true,
         estado: true,
         endereco: true,
         numero: true,
         complemento: true,
         cidade: true,
-
         perfil: true,
         ativo: true,
         criadoEm: true,
@@ -192,14 +183,10 @@ router.post("/cadastro", async (req, res) => {
   }
 });
 
-/**
- * POST /api/auth/login
- *
- * Login utilizando:
- * - e-mail
- * OU
- * - nome de usuário
- */
+// =========================
+// POST /api/auth/login
+// =========================
+
 router.post("/login", async (req, res) => {
   try {
     const {
@@ -251,12 +238,12 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    const senhaValida = await bcrypt.compare(
+    const senhaValidaUsuario = await bcrypt.compare(
       String(senha),
       usuario.senhaHash
     );
 
-    if (!senhaValida) {
+    if (!senhaValidaUsuario) {
       return res.status(401).json({
         sucesso: false,
         mensagem:
@@ -270,21 +257,18 @@ router.post("/login", async (req, res) => {
       sucesso: true,
       mensagem: "Login realizado com sucesso.",
       token,
-
       usuario: {
         id: usuario.id,
         nome: usuario.nome,
         nomeUsuario: usuario.nomeUsuario,
         email: usuario.email,
         telefone: usuario.telefone,
-
         cep: usuario.cep,
         estado: usuario.estado,
         endereco: usuario.endereco,
         numero: usuario.numero,
         complemento: usuario.complemento,
         cidade: usuario.cidade,
-
         perfil: usuario.perfil,
         ativo: usuario.ativo,
       },
@@ -299,11 +283,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
-/**
- * POST /api/auth/alterar-senha
- *
- * Usuário autenticado altera a própria senha.
- */
+// =========================
+// POST /api/auth/alterar-senha
+// =========================
+
 router.post(
   "/alterar-senha",
   exigirAutenticacao,
@@ -393,11 +376,10 @@ router.post(
   }
 );
 
-/**
- * POST /api/auth/esqueci-senha
- *
- * Solicita recuperação de senha.
- */
+// =========================
+// POST /api/auth/esqueci-senha
+// =========================
+
 router.post(
   "/esqueci-senha",
   async (req, res) => {
@@ -494,11 +476,10 @@ router.post(
   }
 );
 
-/**
- * POST /api/auth/redefinir-senha
- *
- * Redefine a senha utilizando o token.
- */
+// =========================
+// POST /api/auth/redefinir-senha
+// =========================
+
 router.post(
   "/redefinir-senha",
   async (req, res) => {
@@ -629,11 +610,11 @@ router.post(
   }
 );
 
-/**
- * PUT /api/auth/me
- *
- * Atualiza os dados do próprio usuário autenticado.
- */
+// =========================
+// PUT /api/auth/me
+// Atualiza o próprio usuário
+// =========================
+
 router.put(
   "/me",
   exigirAutenticacao,
@@ -641,62 +622,15 @@ router.put(
     try {
       const {
         nome,
-        telefone,
-        cep,
-        estado,
-        endereco,
-        numero,
-        complemento,
-        cidade,
+        nomeUsuario,
+        email,
       } = req.body;
 
-      if (
-        !nome ||
-        !cep ||
-        !estado ||
-        !endereco ||
-        !numero ||
-        !cidade
-      ) {
+      if (!nome || !nomeUsuario || !email) {
         return res.status(400).json({
           sucesso: false,
           mensagem:
-            "Nome, CEP, estado, endereço, número e cidade são obrigatórios.",
-        });
-      }
-
-      const nomeNormalizado = String(nome).trim();
-      const telefoneNormalizado = telefone
-        ? String(telefone).trim()
-        : null;
-
-      const cepNormalizado = String(cep).trim();
-      const estadoNormalizado = String(estado).trim();
-      const enderecoNormalizado =
-        String(endereco).trim();
-      const numeroNormalizado =
-        String(numero).trim();
-
-      const complementoNormalizado =
-        complemento
-          ? String(complemento).trim()
-          : null;
-
-      const cidadeNormalizada =
-        String(cidade).trim();
-
-      if (
-        !nomeNormalizado ||
-        !cepNormalizado ||
-        !estadoNormalizado ||
-        !enderecoNormalizado ||
-        !numeroNormalizado ||
-        !cidadeNormalizada
-      ) {
-        return res.status(400).json({
-          sucesso: false,
-          mensagem:
-            "Preencha todos os campos obrigatórios.",
+            "Nome, nome de usuário e e-mail são obrigatórios.",
         });
       }
 
@@ -714,38 +648,105 @@ router.put(
         });
       }
 
+      const nomeNormalizado = String(nome).trim();
+
+      const nomeUsuarioNormalizado = String(
+        nomeUsuario
+      )
+        .trim()
+        .toLowerCase();
+
+      const emailNormalizado = String(email)
+        .trim()
+        .toLowerCase();
+
+      if (
+        !nomeNormalizado ||
+        !nomeUsuarioNormalizado ||
+        !emailNormalizado
+      ) {
+        return res.status(400).json({
+          sucesso: false,
+          mensagem:
+            "Preencha todos os campos obrigatórios.",
+        });
+      }
+
+      if (
+        !/^[a-z0-9._-]+$/.test(
+          nomeUsuarioNormalizado
+        )
+      ) {
+        return res.status(400).json({
+          sucesso: false,
+          mensagem:
+            "O nome de usuário deve conter apenas letras, números, ponto, hífen ou sublinhado.",
+        });
+      }
+
+      // Verifica se outro usuário já utiliza o e-mail
+      const usuarioComEmail =
+        await prisma.usuario.findFirst({
+          where: {
+            email: emailNormalizado,
+            id: {
+              not: usuario.id,
+            },
+          },
+        });
+
+      if (usuarioComEmail) {
+        return res.status(409).json({
+          sucesso: false,
+          mensagem:
+            "Este e-mail já está sendo utilizado por outra conta.",
+        });
+      }
+
+      // Verifica se outro usuário já utiliza o nome de usuário
+      const usuarioComNome =
+        await prisma.usuario.findFirst({
+          where: {
+            nomeUsuario: nomeUsuarioNormalizado,
+            id: {
+              not: usuario.id,
+            },
+          },
+        });
+
+      if (usuarioComNome) {
+        return res.status(409).json({
+          sucesso: false,
+          mensagem:
+            "Este nome de usuário já está sendo utilizado.",
+        });
+      }
+
+      // Atualiza somente os três dados editáveis.
+      // Telefone, endereço, CEP, cidade etc.
+      // permanecem exatamente como estão no banco.
       const usuarioAtualizado =
         await prisma.usuario.update({
           where: {
             id: usuario.id,
           },
-
           data: {
             nome: nomeNormalizado,
-            telefone: telefoneNormalizado,
-
-            cep: cepNormalizado,
-            estado: estadoNormalizado,
-            endereco: enderecoNormalizado,
-            numero: numeroNormalizado,
-            complemento: complementoNormalizado,
-            cidade: cidadeNormalizada,
+            nomeUsuario: nomeUsuarioNormalizado,
+            email: emailNormalizado,
           },
-
           select: {
             id: true,
             nome: true,
             nomeUsuario: true,
             email: true,
             telefone: true,
-
             cep: true,
             estado: true,
             endereco: true,
             numero: true,
             complemento: true,
             cidade: true,
-
             perfil: true,
             ativo: true,
             criadoEm: true,
@@ -772,19 +773,17 @@ router.put(
     }
   }
 );
+// =========================
+// GET /api/auth/me
+// =========================
 
-/**
- * GET /api/auth/me
- */
 router.get("/me", async (req, res) => {
   try {
     const authorization =
       req.headers.authorization;
 
     if (
-      !authorization?.startsWith(
-        "Bearer "
-      )
+      !authorization?.startsWith("Bearer ")
     ) {
       return res.status(401).json({
         sucesso: false,
@@ -824,21 +823,18 @@ router.get("/me", async (req, res) => {
         where: {
           id: usuarioId,
         },
-
         select: {
           id: true,
           nome: true,
           nomeUsuario: true,
           email: true,
           telefone: true,
-
           cep: true,
           estado: true,
           endereco: true,
           numero: true,
           complemento: true,
           cidade: true,
-
           perfil: true,
           ativo: true,
           criadoEm: true,

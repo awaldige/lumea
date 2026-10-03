@@ -157,16 +157,21 @@ export default function AdminLayout({
             />
 
             <AdminLink
-              href="/admin/clientes"
-              label="Clientes"
-            />
+  href="/admin/clientes"
+  label="Clientes"
+/>
 
-            <div className="my-6 h-px bg-[#ddd3c8]" />
+<AdminLink
+  href="/admin/editar-usuario"
+  label="Editar usuário"
+/>
 
-            <AdminLink
-              href="/"
-              label="Voltar para a loja"
-            />
+<div className="my-6 h-px bg-[#ddd3c8]" />
+
+<AdminLink
+  href="/"
+  label="Voltar para a loja"
+/>
 
           </nav>
 
