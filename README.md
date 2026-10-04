@@ -1,361 +1,275 @@
-# LUMÉA
+LUMÉA
+E-commerce de peças artesanais
 
-### E-commerce de peças artesanais
+A LUMÉA é uma plataforma de e-commerce desenvolvida para apresentar e comercializar peças de fabricação artesanal, valorizando o caráter artesanal, o cuidado com os detalhes e a identidade de cada peça.
 
-A **LUMÉA** é uma plataforma de e-commerce desenvolvida para apresentar e comercializar peças de fabricação artesanal, valorizando o caráter artesanal, o cuidado com os detalhes e a identidade de cada peça.
+O projeto combina uma experiência de compra elegante e responsiva com uma arquitetura Full Stack, composta por frontend, API, banco de dados e painel administrativo.
 
-O projeto foi desenvolvido com foco em uma experiência de compra elegante, intuitiva e responsiva, combinando uma identidade visual clássica e sofisticada com uma estrutura preparada para evolução.
+🌐 Loja online: https://lumea-oficial.vercel.app/
 
----
+✨ Sobre o projeto
 
-## ✨ Sobre o projeto
+A LUMÉA foi desenvolvida para oferecer uma experiência digital alinhada à identidade de uma marca de peças artesanais.
 
-A LUMÉA foi criada para oferecer uma experiência digital alinhada à proposta da marca.
+A plataforma permite:
 
-A plataforma permite que os clientes naveguem pelo catálogo, explorem diferentes categorias, visualizem detalhes dos produtos e adicionem itens ao carrinho.
+Navegação pelo catálogo
+Organização por categorias
+Visualização detalhada dos produtos
+Carrinho de compras
+Controle de quantidade de produtos
+Gerenciamento de clientes
+Autenticação de usuários
+Área administrativa
+Gerenciamento de produtos
+Gerenciamento de categorias
+Gerenciamento de coleções
+Gerenciamento de pedidos
+Gerenciamento de cupons
+Edição de dados do administrador
 
-A arquitetura do projeto foi organizada separando **frontend** e **backend**, permitindo maior organização, manutenção e evolução da aplicação.
+A arquitetura foi estruturada separando frontend, backend e banco de dados, facilitando manutenção, evolução e escalabilidade.
 
----
+🛍️ Funcionalidades
+Loja
+Catálogo de produtos
+Categorias de produtos
+Página individual de produto
+Carrinho de compras
+Adição e remoção de produtos
+Controle de quantidade
+Cálculo de subtotal
+Interface responsiva
+Navegação adaptada para dispositivos móveis
+Administração
+Login administrativo
+Autenticação protegida
+Dashboard
+Gestão de produtos
+Cadastro e edição de produtos
+Gestão de categorias
+Gestão de coleções
+Gestão de clientes
+Gestão de pedidos
+Gestão de cupons
+Alteração de senha
+Recuperação de senha
+Edição de nome, usuário e e-mail do administrador
+🎨 Identidade visual
 
-## 🛍️ Principais funcionalidades
+A interface da LUMÉA segue uma proposta clássica, sofisticada e minimalista.
 
-- Catálogo de produtos
-- Organização de produtos por categorias
-- Navegação entre categorias
-- Página individual de produto
-- Visualização de informações dos produtos
-- Adição de produtos ao carrinho
-- Alteração da quantidade de produtos
-- Remoção de produtos do carrinho
-- Limpeza do carrinho
-- Cálculo automático do subtotal
-- Contagem de itens no carrinho
-- Interface responsiva
-- Navegação otimizada para dispositivos móveis
-- Gerenciamento de imagens dos produtos
-- Estrutura preparada para expansão do e-commerce
+A identidade visual busca transmitir:
 
----
+Elegância
+Sofisticação
+Delicadeza
+Exclusividade
+Leveza
+Caráter artesanal
+Cuidado com os detalhes
+Identidade das peças
 
-## 🎨 Identidade visual
+A utilização de tons neutros, tipografia elegante e elementos discretos mantém o foco nos produtos e reforça a proposta da marca.
 
-A identidade visual da LUMÉA foi desenvolvida para transmitir uma sensação de:
-
-- Elegância
-- Sofisticação
-- Delicadeza
-- Exclusividade
-- Leveza
-- Caráter artesanal
-- Cuidado com os detalhes
-- Identidade das peças
-
-A interface utiliza uma estética clássica e minimalista, com tons neutros e elementos visuais discretos.
-
-A proposta é manter o foco nos produtos e transmitir uma experiência visual compatível com peças artesanais e de identidade própria.
-
----
-
-## 🧩 Estrutura do projeto
-
-O projeto está dividido em duas aplicações principais:
-
-```text
-lumea/
-│
-├── backend/
-│   ├── prisma/
-│   ├── src/
-│   ├── uploads/
-│   ├── package.json
-│   └── ...
+🧩 Arquitetura
+LUMÉA
 │
 ├── frontend/
 │   ├── app/
 │   ├── components/
 │   ├── context/
+│   ├── lib/
 │   ├── public/
-│   ├── package.json
+│   └── ...
+│
+├── backend/
+│   ├── prisma/
+│   ├── src/
+│   ├── uploads/
 │   └── ...
 │
 ├── .gitignore
 └── README.md
 Frontend
 
-Responsável pela interface da loja, navegação, catálogo, páginas de produtos e carrinho de compras.
+Responsável pela interface da loja, navegação, catálogo, páginas de produtos, carrinho e painel administrativo.
 
 Backend
 
-Responsável pela API, persistência de dados, gerenciamento dos produtos e comunicação com o banco de dados.
+Responsável pela API, autenticação, regras de negócio, gerenciamento dos dados e comunicação com o banco de dados.
 
-🚀 Tecnologias utilizadas
+Banco de dados
+
+Responsável pela persistência das informações da aplicação utilizando PostgreSQL com Prisma ORM.
+
+🚀 Tecnologias
 Frontend
 Next.js
 React
 TypeScript
-CSS
+Tailwind CSS
 Next.js App Router
 Backend
 Node.js
 Express
-Prisma
+TypeScript
+Prisma ORM
 PostgreSQL
-Ferramentas e ambiente
+JWT
+bcrypt
+Infraestrutura
 Git
 GitHub
-npm
-🏷️ Categorias de produtos
+Vercel
+Render
+Neon
+🗄️ Banco de dados
 
-A loja possui uma estrutura organizada por categorias.
+O backend utiliza PostgreSQL com Prisma ORM.
 
-Brincos
+Entre os principais dados gerenciados pela aplicação estão:
 
-Peças delicadas desenvolvidas para valorizar diferentes composições e ocasiões.
+Produtos
+Categorias
+Coleções
+Clientes
+Usuários administrativos
+Pedidos
+Cupons
 
-Colares
+As credenciais e configurações de conexão são mantidas por meio de variáveis de ambiente.
 
-Peças que combinam elegância, presença e identidade.
+🔐 Segurança
 
-Pulseiras
+Informações sensíveis não são armazenadas diretamente no código-fonte.
 
-Detalhes que complementam a composição com sofisticação e delicadeza.
+As configurações privadas são mantidas através de variáveis de ambiente, incluindo:
 
-💎 Produtos
+DATABASE_URL
+DATABASE_URL_UNPOOLED
+JWT_SECRET
+FRONTEND_URL
+NEXT_PUBLIC_API_URL
 
-O projeto possui produtos de demonstração utilizados durante o desenvolvimento da plataforma.
-
-Coleção principal
-Elegance Drop — Brinco
-Lumière — Colar
-Essence — Pulseira
-Éclat — Brinco
-Coleção Éclat
-Éclat Dourado — Brinco
-Éclat Lumière — Colar
-Éclat Charm — Pulseira
-Coleção Naturelle
-Naturelle Folha — Brinco
-Naturelle Essencial — Colar
-Naturelle Charm — Pulseira
-Naturelle Botanique — Colar
-
-Os produtos, descrições e imagens utilizados durante o desenvolvimento podem ser substituídos posteriormente pelo catálogo definitivo da marca.
-
-🛒 Carrinho de compras
-
-A plataforma possui um sistema de carrinho que permite ao usuário:
-
-Adicionar produtos
-Visualizar os produtos selecionados
-Aumentar a quantidade
-Diminuir a quantidade
-Remover produtos
-Limpar o carrinho
-Visualizar a quantidade total de itens
-Visualizar o subtotal da compra
-
-O carrinho foi estruturado para permitir futuras integrações com processos de checkout e pagamento.
+Arquivos .env e .env.local não devem ser enviados ao repositório.
 
 📱 Responsividade
 
-A interface foi desenvolvida para proporcionar uma experiência consistente em diferentes dispositivos.
-
-O projeto contempla:
+A interface foi desenvolvida para oferecer uma experiência consistente em:
 
 Desktop
 Notebook
 Tablet
 Smartphone
-
-A estrutura responsiva permite que o catálogo e as funcionalidades da loja sejam utilizados em diferentes tamanhos de tela.
-
-💻 Como executar o projeto
+💻 Executando localmente
 Pré-requisitos
-
-Antes de executar o projeto, é necessário ter instalado:
-
 Node.js
 npm
 PostgreSQL
 Git
+Clonar o projeto
+git clone https://github.com/awaldige/lumea.git
+cd lumea
 Frontend
-
-Entre na pasta do frontend:
-
 cd frontend
-
-Instale as dependências:
-
 npm install
-
-Configure as variáveis de ambiente necessárias no arquivo:
-
-.env.local
-
-Depois execute o projeto:
-
 npm run dev
 
-O frontend estará disponível em:
+Frontend:
 
 http://localhost:3000
 Backend
 
-Abra outro terminal e entre na pasta do backend:
+Em outro terminal:
 
 cd backend
-
-Instale as dependências:
-
 npm install
-
-Configure as variáveis de ambiente necessárias.
-
-Depois execute o servidor:
-
 npm run dev
-🔐 Variáveis de ambiente
 
-As variáveis de ambiente são mantidas fora do controle de versão.
+A API utiliza a porta definida pela variável PORT.
 
-Arquivos como:
+🔄 Fluxo da aplicação
+                    ┌───────────────┐
+                    │    Cliente    │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │   Frontend    │
+                    │    Next.js    │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │   API REST    │
+                    │    Express    │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │    Prisma     │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │  PostgreSQL   │
+                    └───────────────┘
+📦 Produtos de demonstração
 
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+O projeto possui produtos de demonstração utilizados durante o desenvolvimento da plataforma.
 
-não devem ser enviados para o GitHub.
+Alguns exemplos:
 
-Esses arquivos podem conter informações como:
+Elegance Drop
+Lumière
+Essence
+Éclat
+Éclat Dourado
+Éclat Lumière
+Éclat Charm
+Naturelle Folha
+Naturelle Essencial
+Naturelle Charm
+Naturelle Botanique
 
-URLs de banco de dados
-Credenciais
-Tokens
-Chaves de API
-Configurações privadas
+Os produtos, imagens e conteúdos de demonstração podem ser substituídos pelo catálogo definitivo da marca.
 
-Nunca publique credenciais ou informações sensíveis diretamente no repositório.
+📈 Evolução do projeto
 
-🗄️ Banco de dados
+A arquitetura foi desenvolvida pensando na evolução contínua da plataforma.
 
-O backend utiliza PostgreSQL como banco de dados e Prisma como ORM.
+Entre as possibilidades de expansão estão:
 
-A estrutura de dados é organizada por meio do Prisma, permitindo trabalhar com:
-
-Produtos
-Categorias
-Dados relacionados ao catálogo
-Persistência das informações da aplicação
-
-As configurações de conexão devem ser definidas por meio das variáveis de ambiente do backend.
-
-📂 Imagens dos produtos
-
-As imagens utilizadas pelos produtos ficam organizadas dentro da estrutura do backend.
-
-backend/
-└── uploads/
-    └── produtos/
-
-Essa estrutura permite organizar os arquivos relacionados ao catálogo de produtos.
-
-🔄 Fluxo básico da aplicação
-
-O funcionamento geral da plataforma segue o seguinte fluxo:
-
-Usuário
-   │
-   ▼
-Frontend
-   │
-   ├── Catálogo
-   │
-   ├── Categorias
-   │
-   ├── Página do produto
-   │
-   └── Carrinho
-   │
-   ▼
-Backend / API
-   │
-   ▼
-Prisma
-   │
-   ▼
-PostgreSQL
-📈 Estrutura preparada para evolução
-
-A arquitetura da LUMÉA foi desenvolvida pensando na possibilidade de expansão da plataforma.
-
-Entre as futuras evoluções possíveis estão:
-
+Checkout completo
 Integração com meios de pagamento
-Finalização de pedidos
-Checkout
 Integração com WhatsApp
-Sistema de pedidos
-Área administrativa
-Gestão de produtos
-Gestão de estoque
-Gestão de clientes
-Cupons de desconto
-Controle de pedidos
+Gestão avançada de estoque
 Melhorias no gerenciamento de imagens
-Integração com serviços externos
+Integrações com serviços externos
 Melhorias na experiência de compra
-🛠️ Desenvolvimento
+📊 Status
 
-O projeto foi desenvolvido utilizando uma arquitetura separada entre frontend e backend.
+Projeto funcional e publicado.
 
-Frontend
+A aplicação possui frontend, API, banco de dados e painel administrativo integrados.
 
-Responsável pela experiência visual e interação do usuário.
-
-frontend/
-Backend
-
-Responsável pela API, regras de negócio e persistência dos dados.
-
-backend/
-
-Essa separação facilita a manutenção e permite que cada camada evolua de maneira independente.
-
-📌 Status do projeto
-
-Em desenvolvimento
-
-A LUMÉA encontra-se em fase de desenvolvimento e estruturação para apresentação e futura utilização comercial.
-
-A versão atual contém produtos e imagens de demonstração utilizados durante o desenvolvimento.
-
-🎯 Objetivo do projeto
-
-O objetivo da LUMÉA é oferecer uma experiência digital que valorize as peças artesanais e permita que cada produto seja apresentado de maneira elegante e organizada.
-
-Mais do que apenas uma loja virtual, a proposta é criar uma experiência que valorize:
-
-O caráter artesanal, o cuidado com os detalhes e a identidade de cada peça.
+A versão atual utiliza produtos e conteúdos de demonstração enquanto a estrutura comercial definitiva da LUMÉA é preparada.
 
 👨‍💻 Desenvolvimento
 
 Projeto desenvolvido por AW Technology.
 
-GitHub
+GitHub:
 
 https://github.com/awaldige
 
-📦 Repositório
-
-O código-fonte do projeto está disponível no GitHub:
+Repositório:
 
 https://github.com/awaldige/lumea
 
 📄 Licença
 
-Este projeto é de uso privado e foi desenvolvido especificamente para a LUMÉA.
+Este projeto foi desenvolvido especificamente para a LUMÉA.
 
-O código-fonte, identidade visual, imagens, conteúdos e demais elementos do projeto não devem ser reutilizados, distribuídos ou comercializados sem autorização
+O código-fonte, identidade visual, imagens, conteúdos e demais elementos do projeto não devem ser reutilizados, distribuídos ou comercializados sem autorização.
