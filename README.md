@@ -1,4 +1,4 @@
-LUMÉA
+# LUMÉA
 
 E-commerce de peças artesanais
 
@@ -6,61 +6,61 @@ A LUMÉA é uma plataforma de e-commerce desenvolvida para apresentar e comercia
 
 O projeto combina uma experiência de compra elegante e responsiva com uma arquitetura Full Stack, composta por frontend, API, banco de dados e painel administrativo.
 
-🌐 Loja online: https://lumea-oficial.vercel.app/
+## 🌐 Loja online: https://lumea-oficial.vercel.app/
 
-✨ Sobre o projeto
+## ✨ Sobre o projeto
 
 A LUMÉA foi desenvolvida para oferecer uma experiência digital alinhada à identidade de uma marca de peças artesanais.
 
 A plataforma permite:
 
-Navegação pelo catálogo
+- Navegação pelo catálogo
 
-Organização por categorias
+- Organização por categorias
 
-Visualização detalhada dos produtos
+- Visualização detalhada dos produtos
 
-Carrinho de compras
+- Carrinho de compras
 
-Controle de quantidade de produtos
+- Controle de quantidade de produtos
 
-Gerenciamento de clientes
+- Gerenciamento de clientes
 
-Autenticação de usuários
+- Autenticação de usuários
 
-Área administrativa
+- Área administrativa
 
-Gerenciamento de produtos
+- Gerenciamento de produtos
 
-Gerenciamento de categorias
+- Gerenciamento de categorias
 
-Gerenciamento de coleções
+- Gerenciamento de coleções
 
-Gerenciamento de pedidos
+- Gerenciamento de pedidos
 
-Gerenciamento de cupons
+- Gerenciamento de cupons
 
-Edição de dados do administrador
+- Edição de dados do administrador
 
 A arquitetura foi estruturada separando frontend, backend e banco de dados, facilitando manutenção, evolução e escalabilidade.
 
-🛍️ Funcionalidades
+## 🛍️ Funcionalidades
 
-Loja
+- Loja
 
-Catálogo de produtos
+- Catálogo de produtos
 
-Categorias de produtos
+- Categorias de produtos
 
-Página individual de produto
+- Página individual de produto
 
-Carrinho de compras
+- Carrinho de compras
 
-Adição e remoção de produtos
+- Adição e remoção de produtos
 
-Controle de quantidade
+- Controle de quantidade
 
-Cálculo de subtotal
+- Cálculo de subtotal
 
 Interface responsiva
 
