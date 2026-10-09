@@ -1,383 +1,157 @@
-# LUMÉA
+# LUMÉA — Joias e Acessórios Artesanais
 
-E-commerce de peças artesanais
+### Elegância, autenticidade e cuidado em cada detalhe.
 
-A LUMÉA é uma plataforma de e-commerce desenvolvida para apresentar e comercializar peças de fabricação artesanal, valorizando o caráter artesanal, o cuidado com os detalhes e a identidade de cada peça.
+A **LUMÉA** é uma plataforma de e-commerce desenvolvida para apresentar e comercializar peças artesanais com uma identidade visual elegante e uma experiência de navegação intuitiva.
 
-O projeto combina uma experiência de compra elegante e responsiva com uma arquitetura Full Stack, composta por frontend, API, banco de dados e painel administrativo.
+O projeto combina uma vitrine digital sofisticada com recursos de gerenciamento administrativo, reunindo catálogo de produtos, coleções e funcionalidades para administração da loja.
 
-## 🌐 Loja online: https://lumea-oficial.vercel.app/
+🔗 **Loja online:** [Acessar a LUMÉA](https://lumea.vercel.app/)
+
+---
 
 ## ✨ Sobre o projeto
 
-A LUMÉA foi desenvolvida para oferecer uma experiência digital alinhada à identidade de uma marca de peças artesanais.
+A LUMÉA foi concebida para valorizar a singularidade das peças artesanais, destacando seus detalhes, sua identidade e o cuidado presente em cada criação.
 
-A plataforma permite:
+Além da experiência da loja, o projeto contempla uma estrutura administrativa para gerenciamento dos dados e funcionalidades da plataforma.
 
-- Navegação pelo catálogo
-
-- Organização por categorias
-
-- Visualização detalhada dos produtos
-
-- Carrinho de compras
-
-- Controle de quantidade de produtos
-
-- Gerenciamento de clientes
-
-- Autenticação de usuários
-
-- Área administrativa
-
-- Gerenciamento de produtos
-
-- Gerenciamento de categorias
-
-- Gerenciamento de coleções
-
-- Gerenciamento de pedidos
-
-- Gerenciamento de cupons
-
-- Edição de dados do administrador
-
-A arquitetura foi estruturada separando frontend, backend e banco de dados, facilitando manutenção, evolução e escalabilidade.
+Do ponto de vista técnico, a aplicação integra um frontend moderno, uma API própria e um banco de dados relacional, demonstrando a implementação de uma solução Full Stack.
 
 ## 🛍️ Funcionalidades
 
-- Loja
+### Loja virtual
 
-- Catálogo de produtos
+- Catálogo de produtos.
+- Organização por categorias e coleções.
+- Páginas de apresentação dos produtos.
+- Carrinho de compras.
+- Interface com identidade visual elegante.
+- Navegação entre as áreas da loja.
 
-- Categorias de produtos
+### Painel administrativo
 
-- Página individual de produto
+- Autenticação administrativa.
+- Gerenciamento de produtos.
+- Gerenciamento de categorias e coleções.
+- Administração de cupons.
+- Gerenciamento de pedidos e clientes.
+- Funcionalidades administrativas protegidas por autenticação.
 
-- Carrinho de compras
+*Os recursos específicos disponíveis devem ser conferidos na versão publicada e no código atual do projeto.*
 
-- Adição e remoção de produtos
+## 🧰 Tecnologias utilizadas
 
-- Controle de quantidade
+### Frontend
 
-- Cálculo de subtotal
+- **Next.js** — framework para construção da aplicação web.
+- **React** — criação de componentes e interfaces.
+- **TypeScript** — tipagem estática e organização do código.
+- **Tailwind CSS** — estilização da interface, caso mantido na versão atual.
 
-Interface responsiva
+### Backend
 
-Navegação adaptada para dispositivos móveis
+- **Node.js** — ambiente de execução.
+- **Express** — estrutura da API.
+- **TypeScript** — desenvolvimento tipado do servidor.
+- **Prisma ORM** — acesso e gerenciamento dos dados.
+- **bcryptjs** — suporte à proteção de senhas por hash.
 
-Administração
+### Banco de dados e infraestrutura
 
-Login administrativo
+- **PostgreSQL** — armazenamento relacional.
+- **Neon** — banco de dados PostgreSQL gerenciado.
+- **Vercel** — hospedagem da aplicação frontend.
 
-Autenticação protegida
+## 🏗️ Arquitetura
 
-Dashboard
+A plataforma utiliza uma arquitetura separada em camadas:
 
-Gestão de produtos
+1. **Frontend:** interface com a qual os usuários interagem.
+2. **Backend:** API responsável pelas operações e regras de negócio.
+3. **Banco de dados:** armazenamento persistente das informações.
+4. **Camada de acesso a dados:** integração entre o backend e o PostgreSQL por meio do Prisma.
 
-Cadastro e edição de produtos
+Essa organização facilita a manutenção, a evolução e a separação de responsabilidades da aplicação.
 
-Gestão de categorias
+## 🚀 Executando o projeto localmente
 
-Gestão de coleções
+### Pré-requisitos
 
-Gestão de clientes
+- Node.js em uma versão compatível com o projeto.
+- npm.
+- Acesso a um banco PostgreSQL.
+- Git.
 
-Gestão de pedidos
+### 1. Clone o repositório
 
-Gestão de cupons
-
-Alteração de senha
-
-Recuperação de senha
-
-Edição de nome, usuário e e-mail do administrador
-
-🎨 Identidade visual
-
-A interface da LUMÉA segue uma proposta clássica, sofisticada e minimalista.
-
-A identidade visual busca transmitir:
-
-Elegância
-
-Sofisticação
-
-Delicadeza
-
-Exclusividade
-
-Leveza
-
-Caráter artesanal
-
-Cuidado com os detalhes
-
-Identidade das peças
-
-A utilização de tons neutros, tipografia elegante e elementos discretos mantém o foco nos produtos e reforça a proposta da marca.
-
-🧩 Arquitetura
-
-LUMÉA
-│
-├── frontend/
-│   ├── app/
-│   ├── components/
-│   ├── context/
-│   ├── lib/
-│   ├── public/
-│   └── ...
-│
-├── backend/
-│   ├── prisma/
-│   ├── src/
-│   ├── uploads/
-│   └── ...
-│
-├── .gitignore
-└── README.md
-
-Frontend
-
-Responsável pela interface da loja, navegação, catálogo, páginas de produtos, carrinho e painel administrativo.
-
-Backend
-
-Responsável pela API, autenticação, regras de negócio, gerenciamento dos dados e comunicação com o banco de dados.
-
-Banco de dados
-
-Responsável pela persistência das informações da aplicação utilizando PostgreSQL com Prisma ORM.
-
-🚀 Tecnologias
-
-Frontend
-
-Next.js
-
-React
-
-TypeScript
-
-Tailwind CSS
-
-Next.js App Router
-
-Backend
-
-Node.js
-
-Express
-
-TypeScript
-
-Prisma ORM
-
-PostgreSQL
-
-JWT
-
-bcrypt
-
-Infraestrutura
-
-Git
-
-GitHub
-
-Vercel
-
-Render
-
-Neon
-
-🗄️ Banco de dados
-
-O backend utiliza PostgreSQL com Prisma ORM.
-
-Entre os principais dados gerenciados pela aplicação estão:
-
-Produtos
-
-Categorias
-
-Coleções
-
-Clientes
-
-Usuários administrativos
-
-Pedidos
-
-Cupons
-
-As credenciais e configurações de conexão são mantidas por meio de variáveis de ambiente.
-
-🔐 Segurança
-
-Informações sensíveis não são armazenadas diretamente no código-fonte.
-
-As configurações privadas são mantidas através de variáveis de ambiente, incluindo:
-
-DATABASE_URL
-DATABASE_URL_UNPOOLED
-JWT_SECRET
-FRONTEND_URL
-NEXT_PUBLIC_API_URL
-
-Arquivos .env e .env.local não devem ser enviados ao repositório.
-
-📱 Responsividade
-
-A interface foi desenvolvida para oferecer uma experiência consistente em:
-
-Desktop
-
-Notebook
-
-Tablet
-
-Smartphone
-
-💻 Executando localmente
-
-Pré-requisitos
-
-Node.js
-
-npm
-
-PostgreSQL
-
-Git
-
-Clonar o projeto
-
+```bash
 git clone https://github.com/awaldige/lumea.git
 cd lumea
+```
 
-Frontend
+### 2. Configure o backend
 
-cd frontend
-npm install
-npm run dev
+Entre na pasta do backend e instale as dependências:
 
-Frontend:
-
-http://localhost:3000
-
-Backend
-
-Em outro terminal:
-
+```bash
 cd backend
 npm install
-npm run dev
+```
 
-A API utiliza a porta definida pela variável PORT.
+Configure as variáveis de ambiente conforme o arquivo de exemplo do projeto. A conexão com o PostgreSQL deve ser definida na configuração utilizada pelo Prisma.
 
-🔄 Fluxo da aplicação
+Execute as migrações existentes, seguindo os scripts e as instruções do projeto.
 
-                    ┌───────────────┐
-                    │    Cliente    │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │   Frontend    │
-                    │    Next.js    │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │   API REST    │
-                    │    Express    │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │    Prisma     │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │  PostgreSQL   │
-                    └───────────────┘
+Inicie o servidor utilizando o script de desenvolvimento definido no `package.json`.
 
-📦 Produtos de demonstração
+### 3. Configure o frontend
 
-O projeto possui produtos de demonstração utilizados durante o desenvolvimento da plataforma.
+Em outro terminal, entre na pasta do frontend:
 
-Alguns exemplos:
+```bash
+cd frontend
+npm install
+```
 
-Elegance Drop
+Configure a URL da API conforme as variáveis de ambiente esperadas pela aplicação.
 
-Lumière
+Inicie o frontend utilizando o script de desenvolvimento definido no `package.json`.
 
-Essence
+> Os comandos exatos de migração e execução devem seguir os scripts presentes nos respectivos arquivos `package.json`. Não utilize credenciais reais no README nem publique arquivos `.env`.
 
-Éclat
+## 🎨 Identidade visual
 
-Éclat Dourado
+A experiência visual da LUMÉA segue uma proposta clássica e sofisticada, com:
 
-Éclat Lumière
+- Paleta de tons neutros e bege.
+- Tipografia elegante.
+- Apresentação visual voltada a peças artesanais.
+- Atenção à organização dos produtos e aos detalhes da interface.
 
-Éclat Charm
+A proposta é unir tecnologia e identidade de marca para criar uma vitrine digital coerente com os produtos apresentados.
 
-Naturelle Folha
+## 🔮 Evoluções futuras
 
-Naturelle Essencial
+Entre as possibilidades de evolução da plataforma estão:
 
-Naturelle Charm
+- Integração com provedores de pagamento.
+- Automação do fluxo de compra e confirmação de pedidos.
+- Integração com serviços de entrega.
+- Aprimoramento de relatórios administrativos.
+- Melhorias de desempenho, acessibilidade e experiência mobile.
 
-Naturelle Botanique
+Essas possibilidades não representam funcionalidades necessariamente disponíveis na versão atual.
 
-Os produtos, imagens e conteúdos de demonstração podem ser substituídos pelo catálogo definitivo da marca.
+## 👨‍💻 Desenvolvimento
 
-📈 Evolução do projeto
+**AW TECHNOLOGY — André Waldige**
 
-A arquitetura foi desenvolvida pensando na evolução contínua da plataforma.
+Projeto desenvolvido para demonstrar conhecimentos em desenvolvimento Full Stack, construção de interfaces, integração com APIs e modelagem de dados relacionais.
 
-Entre as possibilidades de expansão estão:
+- **GitHub:** [@awaldige](https://github.com/awaldige)
+- **Portfólio:** [andre-waldige.vercel.app](https://andre-waldige.vercel.app)
 
-Checkout completo
+---
 
-Integração com meios de pagamento
-
-Integração com WhatsApp
-
-Gestão avançada de estoque
-
-Melhorias no gerenciamento de imagens
-
-Integrações com serviços externos
-
-Melhorias na experiência de compra
-
-📊 Status
-
-Projeto funcional e publicado.
-
-A aplicação possui frontend, API, banco de dados e painel administrativo integrados.
-
-A versão atual utiliza produtos e conteúdos de demonstração enquanto a estrutura comercial definitiva da LUMÉA é preparada.
-
-👨‍💻 Desenvolvimento
-
-Projeto desenvolvido por AW Technology.
-
-GitHub:
-
-https://github.com/awaldige
-
-Repositório:
-
-https://github.com/awaldige/lumea
-
-📄 Licença
-
-Este projeto foi desenvolvido especificamente para a LUMÉA.
-
-O código-fonte, identidade visual, imagens, conteúdos e demais elementos do projeto não devem ser reutilizados, distribuídos ou comercializados sem autorização.
+**LUMÉA — peças com identidade, tecnologia com propósito.**
